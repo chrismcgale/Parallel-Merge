@@ -1,3 +1,4 @@
+// Deficiency: Loads tile_size * 2 items per iteration but only uses tile_size
 __global__ void merge_tiled_kernel(int *A, int m, int *B, int n, int *C, int tile_size) {
     // Part 1 Find A and B start and end co_rank for the current output subarray
     extern __shared__ int shareAB[]; // Size is 2 * tile_size
