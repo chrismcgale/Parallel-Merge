@@ -8,8 +8,8 @@ __global__ void merge_circular_kernel(int *A, int m, int *B, int n, int *C, int 
     int C_end = min((blockIdx.x + 1) * ceil((m + n) / gridDim.x), m + n);
 
     if (threadIdx.x == 0) {
-        A_S[0] = co_rank(C_curr, A, m, B, n); // Make tile co-rank visible to all threads without running for all
-        A_S[1] = co_rank(C_next, A, m, B, n);
+        A_S[0] = co_rank(C_start, A, m, B, n); // Make tile co-rank visible to all threads without running for all
+        A_S[1] = co_rank(C_end, A, m, B, n);
     }
 
     __syncthreads();
